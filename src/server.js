@@ -31,6 +31,16 @@ app.get('/api/users', (request, response) => {
 });
 
 // GET /api/users/3 -> grazinti useri kurio id yra 3 (ne pagal indexa)
+app.get('/api/users/3', (request, response) => {
+  const searchIndex = 3;
+  const foundUser = users.find((uObj) => uObj.id === searchIndex);
+  console.log('foundUser ===', foundUser);
+  if (foundUser) {
+    response.json(foundUser);
+  } else {
+    response.status(404).json({ msg: 'user not found' });
+  }
+});
 
 // POST /api/users -> sukurti nauja useri su gautu name ir prideti prie esamu, grazinti 201 statusa su zinute
 
